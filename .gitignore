@@ -6,3 +6,7 @@ base.pyc
 tests.pyc
 venv/
 app/views.pyc
+app/models.pyc
+app/views.py
+app/views.pyc
+run.pyc

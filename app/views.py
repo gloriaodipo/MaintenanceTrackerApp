@@ -31,12 +31,18 @@ class UserSignupAPI(Resource):
             result = jsonify({'message': 'All fields required'}) 
             result.status_code = 400
             return result
-
-        else:
-            users.append(u)
-            result = jsonify({'message': 'Successfully registered'})
-            result.status_code = 201
+        elif u.email in [i.email for i in users]:
+            result = jsonify({"message": "User already exists"})
+            result.status_code = 203
             return result
+        elif u.username in [i.username for i in users]:
+            result = jsonify({"message": "User already exists"})
+            result.status_code = 203
+            return result
+        
+        users.append(u)
+
+        return {"message":"Successfully registered"},201 
 
 class UserLoginAPI(Resource):
 
