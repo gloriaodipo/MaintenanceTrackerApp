@@ -13,6 +13,14 @@ class UserTestCase(BaseClass):
         self.assertEqual(result["message"], "Successfully registered")
         self.assertEqual(response.status_code, 201)
 
+    def test_cannot_signup_twice(self):
+        """Test API cannot register a user twice(POST request)"""
+        response = self.client.post('/api/v1/user/signup', data = json.dumps(self.user_data), content_type = 'application/json')
+        response2 = self.client.post('/api/v1/user/signup', data = json.dumps(self.user_data), content_type = 'application/json')
+        result = json.loads(response2.data)
+        self.assertEqual(result["message"], "User already exists")
+        self.assertEqual(response2.status_code, 203)
+
     def test_wrong_signup(self):
         """Test API cannot successfully register a new user if any field is left blank(POST request)"""
         response = self.client.post('/api/v1/user/signup', data = json.dumps({'username':'caren','department':'','email':'caren@gmail.com', 'password': 'passw'}) , content_type = 'application/json')
