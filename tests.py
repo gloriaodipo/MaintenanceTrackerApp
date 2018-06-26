@@ -1,4 +1,4 @@
-from app.views import app
+from .app.views import app
 import json
 
 from base import BaseClass
