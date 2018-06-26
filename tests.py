@@ -35,8 +35,22 @@ class UserTestCase(BaseClass):
         self.assertEqual(result["message"], "You are successfully logged in")
         self.assertEqual(response.status_code, 200)
 
+    def test_cannot_login_without_username(self):
+        """Test API cannot login a user when username is blank (POST request)"""
+        response = self.client.post('api/v1/user/login', data=json.dumps({'username':'', 'password':'passw'}), content_type='application/json')
+        result = json.loads(response.data)
+        self.assertEqual(result['message'], 'please enter username')
+        self.assertEqual(response.status_code, 400)
+
+    def test_cannot_login_without_password(self):
+        """Test API cannot login a user without a password"""
+        response = self.client.post('api/v1/user/login', data=json.dumps({'username':"caren", 'password':""}), content_type='application/json')
+        result = json.loads(response.data)
+        self.assertEqual(result['message'], 'please enter password')
+        self.assertEqual(response.status_code, 400)
+
     def test_wrong_login(self):
-        """Test API cannot authenticate login when wrong password is used or no password supplied (POST request)"""
+        """Test API cannot authenticate login when wrong password is used (POST request)"""
         response = self.client.post('/api/v1/user/login', data=json.dumps({'username':'carenakinyi', 'password':'www'}), content_type='application/json')
         result = json.loads(response.data)
         self.assertEqual(result['message'], 'Wrong password.')

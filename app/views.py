@@ -51,17 +51,22 @@ class UserLoginAPI(Resource):
         username = access['username']
         password = access['password']
 
-        for user in users:
-            if username == user.username:
-                if password == user.password:
-                    result = jsonify({"message": "You are successfully logged in"})
-                    result.status_code = 200
-                    return result
-                else:
-                    result =jsonify({'message': 'Wrong password.'})
-                    result.status_code = 401
-                    return result
-            else:
+        if username == "":
+            return {"message":"please enter username"}, 400
+        elif password == "":
+            return {"message":"please enter password"} ,400   
+        else:
+            for user in users:
+                if username == user.username:
+                    if password == user.password:
+                        result = jsonify({"message": "You are successfully logged in"})
+                        result.status_code = 200
+                        return result
+                    else:
+                        result =jsonify({'message': 'Wrong password.'})
+                        result.status_code = 401
+                        return result
+                
                 result = jsonify({"message": "User unavailable"})
                 result.status_code = 404
                 return result
