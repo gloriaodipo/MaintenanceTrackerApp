@@ -6,12 +6,12 @@ from base import BaseClass
 class UserTestCase(BaseClass):
     """This class represents the user test cases."""
 
-    def test_signup(self):
-        """Test API can successfully register a new user (POST request)"""
-        response = self.client.post('/api/v1/user/signup', data = json.dumps(self.user_data), content_type = 'application/json')
-        result = json.loads(response.data)
-        self.assertEqual(result["message"], "Successfully registered")
-        self.assertEqual(response.status_code, 201)
+    # def test_signup(self):
+    #     """Test API can successfully register a new user (POST request)"""
+    #     response = self.client.post('/api/v1/user/signup', data = json.dumps(self.user_data), content_type = 'application/json')
+    #     result = json.loads(response.data)
+    #     self.assertEqual(result["message"], "Successfully registered")
+    #     self.assertEqual(response.status_code, 201)
 
     def test_cannot_signup_twice(self):
         """Test API cannot register a user twice(POST request)"""
