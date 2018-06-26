@@ -14,7 +14,7 @@ class User_Schema(Schema):
     user_id = fields.Int()
     username = fields.Str()
     department = fields.Str()
-    email = fields.Str()
+    email = fields.Email()
     password = fields.Str()
     admin = fields.Boolean()
 

@@ -74,8 +74,15 @@ class UserLoginAPI(Resource):
 class RequestsAPI(Resource):
     def post(self):
         req = request.get_json()
-        r = Requests(req_id=req.get('req_id'), request_title=req.get('request_title'),
-        description=req.get('description'))
+        req_id = req['req_id']
+        request_title = req['request_title']
+        description = req['description']
+
+        r = Requests(
+            req_id=req_id,
+            request_title=request_title,
+            description=description
+            )
 
         requests.append(r)
 
