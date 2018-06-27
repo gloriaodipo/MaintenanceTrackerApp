@@ -1,11 +1,10 @@
 .pytest_cache/
 .vscode/
-__init__.pyc
 base.pyc
 tests.pyc
 venv/
-app/views.pyc
-app/models.pyc
 app/views.py
-app/views.pyc
 run.pyc
+app/models.pyc
+app/views.pyc
+__init__.pyc
