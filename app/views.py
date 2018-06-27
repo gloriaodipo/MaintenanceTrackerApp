@@ -25,7 +25,7 @@ class UserSignupAPI(Resource):
             email=email,
             password=password
             )
-
+    
         if not user['username'] or not user['department'] or not user['email'] \
                 or not user['password']:
             result = jsonify({'message': 'All fields required'}) 
