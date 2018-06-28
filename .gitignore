@@ -1,7 +1,13 @@
 .pytest_cache/
 .vscode/
-__init__.py
-__init__.pyc
 base.pyc
 tests.pyc
 venv/
+app/views.py
+run.pyc
+app/models.pyc
+app/views.pyc
+__init__.pyc
+*.pyc
+__pycache__/
+.coverage

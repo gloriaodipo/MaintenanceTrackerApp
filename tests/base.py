@@ -1,6 +1,7 @@
-from app.views import app
 import unittest
 import json
+from ..app.views import app
+from ..app.views import users, requests
 
 class BaseClass(unittest.TestCase):
     """This is the base class for test cases."""
@@ -25,4 +26,5 @@ class BaseClass(unittest.TestCase):
 
     def tearDown(self):
         """ Clear anything that has been saved. """
-        pass                    
+        users = []
+        requests = []                 
