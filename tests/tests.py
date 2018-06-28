@@ -10,6 +10,13 @@ REQUEST_URL = '/api/v1/requests'
 class TestUserCase(BaseClass):
     """This class represents the user test cases."""
 
+    def test_can_successfully_signup_a_user(self):
+        """Test API can successfully register a new user"""
+        response = self.client.post(
+            SIGNUP_URL, data = json.dumps(self.user_data), content_type = 'application/json')
+        result = json.loads(response.data.decode())
+        self.assertEqual(result["message"], "Successfully registered")
+        self.assertEqual(response.status_code, 201)
 
     def test_cannot_signup_twice(self):
         """Test API cannot register a user twice(POST request)"""
